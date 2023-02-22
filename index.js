@@ -53,7 +53,7 @@ const producto = new ProductManager();
      })
 
 
-     console.log(producto.getProducts());
+     //console.log(producto.getProducts());
       
      //producto.getProductsById(1)
      //console.log(producto.getProductsById(4));
