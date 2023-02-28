@@ -1,5 +1,15 @@
-const ProductManager = require("./ProductManager");
-const producto = new ProductManager();
+const ProductManager = require("./ProductManager/funtions");
+const producto = new ProductManager('./ProductManager/products.json');
+
+
+producto.addProduct({
+  title:"producto 1",
+  description:"pelota",
+  price:1100,
+  thumbnail:"sin foto",
+  code:"assdfg098",
+  stock:10,
+});
 
 
 
@@ -41,26 +51,28 @@ const producto = new ProductManager();
      
      } );
 
-     producto.addProduct({
-        title:"producto 5",
-      description:"mancuernas",
-      price:2000,
-      thumbnail:"sin foto",
-      code:"assdfg",
-      stock:10,
+    //  producto.addProduct({
+    //     title:"producto 5",
+    //   description:"mancuernas",
+    //   price:2000,
+    //   thumbnail:"sin foto",
+    //   code:"assdfg",
+    //   stock:10,
       
 
-     })
+    //  })
 
-
-     //console.log(producto.getProducts());
-      
+//console.log(saveProducts);
+    // console.log(producto.getProducts());
+    console.log(producto.saveProducts());
      //producto.getProductsById(1)
-     //console.log(producto.getProductsById(4));
+    // console.log(producto.getProductsById(3));
+
+    //deleteProduct(id(2))
 
 
-
-
-     //console.log(Object.values(producto));
+   // console.log(Object.values(producto));
      //console.log(Object.entries(producto));
+
+
 
