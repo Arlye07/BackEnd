@@ -43,18 +43,29 @@ class ProductManager {
     return product;
   }
 
+  
   updateProduct(id, updates) {
-    const productIndex = this.products.findIndex((x) => x.id === id);
-    if (productIndex === -1) {
-      console.log("No encontrado");
+    try {
+      const data = fs.readFileSync(this.path, "utf-8");
+      this.products = JSON.parse(data);
+      const productIndex = this.products.findIndex((x) => x.id === id);
+      if (productIndex === -1) {
+        console.log("No se encontró");
+        return;
+      }
+      this.products[productIndex] = {
+        ...this.products[productIndex],
+        ...updates,
+        id: this.products[productIndex].id
+      };
+      fs.writeFileSync(this.path, JSON.stringify(this.products, null, "\t"));
+      return this.products[productIndex];
+    } catch (error) {
+      console.log("Error:", error.message);
       return;
     }
-    this.products[productIndex] = {
-      ...this.products[productIndex],
-      ...updates,
-    };
-    this.saveProducts();
   }
+
 
   deleteProduct(id) {
     const productIndex = this.products.findIndex((x) => x.id === id);
