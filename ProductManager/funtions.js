@@ -43,7 +43,7 @@ class ProductManager {
     return product;
   }
 
-  
+
   updateProduct(id, updates) {
     try {
       const data = fs.readFileSync(this.path, "utf-8");
@@ -75,6 +75,7 @@ class ProductManager {
     }
     this.products.splice(productIndex, 1);
     this.saveProducts();
+    return "Se elimino el producto";
   }
 
   loadProducts() {
