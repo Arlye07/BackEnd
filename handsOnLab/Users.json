@@ -1,0 +1,22 @@
+[
+	{
+		"nombre": "Ari",
+		"apellido": "Villa",
+		"curso": 1
+	},
+	{
+		"nombre": "Igna",
+		"apellido": "Vi",
+		"curso": 1
+	},
+	{
+		"nombre": "Noe",
+		"apellido": "Via",
+		"curso": 1
+	},
+	{
+		"nombre": "Ali",
+		"apellido": "Mar",
+		"curso": 2
+	}
+]
