@@ -1,17 +1,16 @@
-const producto = require("./ProductManager/funtions.js");
-//const producto = new ProductManager('./ProductManager/products.json');
-//const productManager = require('./ProductManager');
+const productManager = require("./ProductManager/funtions.js");
 
 
-   producto.addProduct({
-   title:"producto 1",
-   description:"pelota",
-   price:1100,
-   thumbnail:"sin foto",
-   code:"assdfg098",
-   stock:10,
 
-   } );
+   // productManager.addProduct({
+   // title:"producto 1",
+   // description:"pelota",
+  //  price:1100,
+   // thumbnail:"sin foto",
+   // code:"assdfg098",
+   // stock:10,
+
+   // } );
 //    producto.addProduct({
 //        title:"producto 2",
 //        description:"medias",
@@ -51,13 +50,13 @@ const producto = require("./ProductManager/funtions.js");
       
       // })
 
-  /** /* 
-     console.log(producto.getProducts());//(entendido)
-    console.log(producto.saveProducts(2));//(no del todo)
-     console.log( producto.updateProduct(1)); //(no del todo)
-     console.log(producto.deleteProduct(4));// (entendido)
-     console.log(producto.getProductById(6)); //entendido
-   */
+   
+    // console.log(productManager.getProducts());//(entendido)
+    //console.log(productManager.saveProducts(1));//(no del todo)
+     //console.log(productManager.updateProduct(1)); //(no del todo)
+     //console.log(productManager.deleteProduct(4));// (entendido)
+    // console.log(productManager.getProductById(11)); //entendido
+
 
 
     //console.log( producto.loadProducts(1));

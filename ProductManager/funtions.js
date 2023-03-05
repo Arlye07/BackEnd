@@ -96,6 +96,6 @@ class ProductManager {
   }
 }
 
-const producto = new ProductManager('./ProductManager/products.json');
-module.exports = producto;
+const productManager = new ProductManager('./ProductManager/products.json');
+module.exports = productManager;
 
