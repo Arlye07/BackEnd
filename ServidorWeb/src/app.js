@@ -4,7 +4,7 @@ const port = 8080
 const app = express()
 const path = require('path');
  const productManager = require("./funtions");
- //const productManager = new ProductManager("../ProductManager/products.json");
+ 
 
 app.use(express.urlencoded({extended: true}))
 
