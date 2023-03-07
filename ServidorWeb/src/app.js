@@ -63,33 +63,7 @@ app.get('/products/:pid', async (req, res) => { console.log(req.params.pid);
 
 //-------------------------------------------
 
-// Endpoint para obtener todos los productos
-// app.get("/products", async (req, res) => {
-//   try {
-//     const limit = req.query.limit || producto.getProducts().length;
-//     const products = productManager.getProducts().slice(0, limit);
-//     res.send(products);
-//   } catch (error) {
-//     res.status(500).send({ error: error.message });
-//   }
-// });
 
-// // Endpoint para obtener un producto por su ID
-// app.get("/product/:pid", async (req, res) => {
-//   try {
-//     const pid = req.params.pid;
-//     const product = productManager.getProductById(pid);
-//     if (product) {
-//       res.send(product);
-//     } else {
-//       res.status(404).send({ error: "Producto no encontrado" });
-//     }
-//   } catch (error) {
-//     res.status(500).send({ error: error.message });
-//   }
-// });
-
-//----------------------------------------------
 
 app.listen(port, ()=>{
     console.log(`Servidor en marcha en ${port}`);
