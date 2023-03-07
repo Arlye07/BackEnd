@@ -1,4 +1,4 @@
-const productManager = require("./ProductManager/funtions.js");
+const productManager = require("./ServidorWeb/data/products.json");
 
 
 
@@ -11,7 +11,7 @@ const productManager = require("./ProductManager/funtions.js");
    // stock:10,
 
    // } );
-//    producto.addProduct({
+//    productManager.addProduct({
 //        title:"producto 2",
 //        description:"medias",
 //        price:800,
@@ -21,7 +21,7 @@ const productManager = require("./ProductManager/funtions.js");
       
 //       } );
 
-//   producto.addProduct({
+//   productManager.addProduct({
 //       title:"producto 3",
 //       description:"short",
 //       price:1400,
@@ -30,17 +30,17 @@ const productManager = require("./ProductManager/funtions.js");
 //       stock:10,
      
 //       } );
-//   producto.addProduct({
-//       title:"producto 4",
-//       description:"conos",
-//       price:800,
-//       thumbnail:"sin foto",
-//       code:"assdfg0",
-//       stock:10,
+// productManager.addProduct({
+//        title:"producto 4",
+//        description:"conos",
+//        price:800,
+//        thumbnail:"sin foto",
+//        code:"assdfg0",
+//        stock:10,
      
-//       } );
+//        } );
 
-      // producto.addProduct({
+      // productManager.addProduct({
        //   title:"producto 5",
        // description:"mancuernas",
       //  price:2000,

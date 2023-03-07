@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = "./products.json";
+const path = "../data/products.json";
 
 
 class ProductManager {
@@ -96,6 +96,6 @@ class ProductManager {
   }
 }
 
-const productManager = new ProductManager('./ProductManager/products.json');
+const productManager = new ProductManager('../data/products.json');
 module.exports = productManager;
 
