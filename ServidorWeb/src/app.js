@@ -1,71 +1,77 @@
-const fs = require('fs');
-const express = require('express')
-const port = 8080
-const app = express()
-const path = require('path');
- const productManager = require("./funtions");
- 
+const fs = require("fs");
+const express = require("express");
+const port = 8080;
+const app = express();
+const path = require("path");
+const productManager = require("./productManager");
 
-app.use(express.urlencoded({extended: true}))
-
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //--------------------------------------
- 
-app.get('/products', async (req, res) => {
-  const {ordering, price_low = 0, price_high = 100, country, orderBy } = parseInt( req.query );
-
-  let limit = parseInt(req.query.limit) || 3;
-  if (isNaN(limit) || limit <= 0) {
-    return res.status(400).json({ error: 'El parámetro "limit" debe ser un número positivo' });
+// GET /products
+app.get("/products", async (req, res) => {
+    try {
+      const products = productManager.getProducts();
+      res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
   }
-  
+});
+// GET /products/:id
+app.get("/products/:pid", async (req, res) => {
   try {
-      const data = await fs.promises.readFile('../data/products.json', 'utf8');
-      const products = JSON.parse(data);
+    const productId = +req.params.pid;
 
-      const queries = {
-          ordering,
-          price_high,
-          price_low,
-          country,
-          orderBy,
-          limit
-      }
+    const product = productManager.getProductById(productId);
 
-      res.json({ message: 'Los productos', products: products.slice(0, limit), queries });
-  } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error' });
+    res.json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
   }
 });
 
-
-app.get('/products/:pid', async (req, res) => { console.log(req.params.pid);
-    const productId = parseInt(req.params.pid);
-
+// POST /products
+app.post("/products", (req, res) => {
+  const body = req.body;
     try {
-        
-        const data = await fs.promises.readFile('../data/products.json', 'utf8');
-        const products = JSON.parse(data);
-        const product = products.find(p => p.id === productId);
-
-        if (!product) {
-            return res.status(404).json({ error: `ID del producto ${productId} no encontrado` });
-        }
-
-        res.json({ product });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Error' });
+      productManager.addProduct(body);
+      return res.status(201).json({ message: "Producto creado" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error });
     }
+});
+
+// DELETE /products/:id
+app.delete('/products/:id', (req, res) => {
+  const id = +req.params.id;
+  try {
+    productManager.deleteProduct(id);
+    res.json({ message: `Se elimino el product ${id}`});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
+  }
+})
+
+// PUT /products/:id
+app.put('/products/:id', (req, res) => {
+  const id = +req.params.id;
+  const body = req.body;
+  try {
+    productManager.updateProduct(id, body);
+    res.json({ message: `Product id ${id} modified`});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
+  }
 });
 
 //-------------------------------------------
 
-
-
-app.listen(port, ()=>{
-    console.log(`Servidor en marcha en ${port}`);
-})
-
+app.listen(port, () => {
+   console.log(`Server listening on ${port}`);
+});
