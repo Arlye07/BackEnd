@@ -36,11 +36,9 @@
 
 ///---------
 const { Router } = require('express');
-const CartManager = require('../cartManager');
-const ProductManager = require('../productManager');
+const cartMa = require('../cartManager');
+const productMa = require('../productManager');
 const router = Router();
-const productMa = new ProductManager('../data/products.json');
-const cartMa = new CartManager('../data/carts.json');
 
 router.post('/', async (req, res) => {
   try {

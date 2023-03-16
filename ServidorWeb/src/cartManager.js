@@ -129,5 +129,5 @@ class CartManager {
     fs.writeFileSync(this.path, JSON.stringify(carts));
   }
 }
-
-module.exports = CartManager;
+const cartMa = new CartManager('../data/carts.json');
+module.exports =cartMa;
