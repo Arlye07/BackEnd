@@ -84,6 +84,7 @@ class ProductManager {
     }
   }
 }
+//-------------------
 
 const productManager = new ProductManager(path);
 module.exports = productManager;
