@@ -35,18 +35,6 @@ class CartManager{
     fs.writeFileSync(this.path, JSON.stringify(carts, null, 2))
     console.log(`Carrito Id ${numId + 1} generado correctamente`)
   }
-  getCarts() {
-    return this.lectura();
-  }
-  getCart(id){
-    const carts = this.lectura(this.path)
-    try {const cart = carts.find(c => c.id === id)
-      return cart
-    } catch (error) {
-      throw new Error(`Error id ${id}: ${error.message}`)
-    }
-  }
-
   agregaUno(cid, pid){
     const carts = this.lectura(this.path)
     const cart = carts.find(c => c.id === cid)
@@ -72,6 +60,17 @@ class CartManager{
       console.log(`El producto ${pid} y el id del carrito ${cid} se añadieron`)
     } catch (error) {
       throw new Error(`Error al agregar el producto: ${error.message}`)
+    }
+  }
+  getCarts() {
+    return this.lectura();
+  }
+  getCart(id){
+    const carts = this.lectura(this.path)
+    try {const cart = carts.find(c => c.id === id)
+      return cart
+    } catch (error) {
+      throw new Error(`Error id ${id}: ${error.message}`)
     }
   }
   
