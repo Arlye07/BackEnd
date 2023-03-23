@@ -73,8 +73,27 @@ class CartManager{
       throw new Error(`Error id ${id}: ${error.message}`)
     }
   }
-  
+  borrarProducto(cid, pid) {
+    const carts = this.lectura(this.path)
+    const cart = carts.find(c => c.id === cid)
+    const indexCartPro = cart.productos.findIndex(p => p.product === pid)
+
+    try {
+      if (indexCartPro === -1) {
+        console.error(`El producto no se encontró en el carrito ${cid}`)
+        return
+      }
+
+      // Si encontramos el producto, lo eliminamos del carrito
+      cart.productos.splice(indexCartPro, 1)
+      fs.writeFileSync(this.path, JSON.stringify(carts))
+      console.log(`El producto ${pid} fue eliminado del carrito ${cid}`)
+    } catch (error) {
+      throw new Error(`Error al borrar el producto: ${error.message}`)
+    }
+  }
   
 }
+
 const cartManager = new CartManager(jsonCart)
 module.exports = cartManager
