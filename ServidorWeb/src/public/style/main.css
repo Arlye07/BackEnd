@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../public/style/main.css">
-  <title>{{title}}</title>
-  <style>
-    body{
+body{
     background-color: rgb(216, 119, 216);
       margin: 0;
       padding: 16px;
@@ -43,7 +34,7 @@
       padding: 1rem;
     }
     .formsContaine,form{
-      background-color: aqua;
+      background-color: rgb(0, 55, 255);
       margin: 1rem;
       padding: 1rem;
       width: 30rem;
@@ -72,11 +63,3 @@
     button:hover{
       cursor: pointer;
     }
-  </style>
-  {{!-- <link rel="stylesheet" href="/ServidorWeb/src/public/img/css/{{style}}"> --}}
-  <link rel="stylesheet" href="../../public/style/main.css">
-</head>
-<body>
-  {{{body}}}
-</body>
-</html>

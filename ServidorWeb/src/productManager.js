@@ -1,36 +1,58 @@
 const fs = require("fs");
-const path = `${__dirname}/../data/products.json`;
-
 class ProductManager {
   constructor(path) {
-    this.products = [];
     this.path = path;
-    this.loadProducts();
   }
 
   addProduct(product) {
-    if (this.products.find((x) => x.code === product.code)) {
-      console.log("Ya implementado");
-      return;
+    // if (this.products.find((x) => x.code === product.code)) {
+    //   console.log("Ya implementado");
+    //   return;
+    // }
+    // if (
+    //   !product.title ||
+    //   !product.description ||
+    //   !product.price ||
+    //   !product.thumbnail ||
+    //   !product.code ||
+    //   !product.stock
+    // ) {
+    //   console.log("Faltan info");
+    //   return;
+    // }
+
+    const data = fs.readFileSync(this.path)
+    const products = JSON.parse(data)
+
+    const id = products.length + 1
+    const newProduct = product
+    newProduct["id"] = id
+    products.push(newProduct)
+
+    try {
+      //no estoy utilizando appendFileSync por que agregaria el objeto al final del archivo pórfuera del array de productos creando un error de sintaxis en el json de los porductos
+      fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+      console.log(`producto ${id} agregado`)
+      return products
+    } catch (error) {
+      console.error('error al escribir el archivo',error)
+      throw new Error(`no se pudo agregar el producto ${id}`)
     }
-    if (
-      !product.title ||
-      !product.description ||
-      !product.price ||
-      !product.thumbnail ||
-      !product.code ||
-      !product.stock
-    ) {
-      console.log("Faltan info");
-      return;
-    }
-    product.id = this.products.length + 1;
-    this.products.push(product);
-    this.saveProducts();
   }
 
-  getProducts() {
-    return this.products;
+  getProducts(limit) {
+    try {
+      const productos = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
+      if(limit){
+        console.log(productos.slice(0, limit))
+        return productos.slice(0, limit)
+      }else{
+        return productos
+      }
+    }catch(error){
+      console.error(error)
+      throw new Error(`error al cargar los productos`)
+    }
   }
 
   getProductById(id) {
@@ -57,20 +79,27 @@ class ProductManager {
   }
 
 
-  deleteProduct(id) {
-    const productIndex = this.products.findIndex((x) => x.id === id);
-    if (productIndex === -1) {
-      throw "No encontrado";
+  deleteProduct(id){
+    try {
+      const productos = JSON.parse(fs.readFileSync(this.path, 'utf-8',))
+      const index = productos.findIndex(producto => producto.id === id)
+
+
+      if(index !== -1){
+        productos.splice(index, 1)
+        fs.writeFileSync(this.path, JSON.stringify(productos, null, 2))
+        console.log('producto ${id} eliminado')
+      }
+    } catch (error) {
+      console.error(error)
+      throw new Error(`error al eliminar el producto ${id}`)
     }
-    this.products.splice(productIndex, 1);
-    this.saveProducts();
-    return "Se elimino el producto";
   }
 
   loadProducts() {
     try {
       const data = fs.readFileSync(this.path, "utf-8");
-      this.products = JSON.parse(data);
+      const products = JSON.parse(data);
     } catch (error) {
       console.log("Error al cargar productos:", error.message);
     }
