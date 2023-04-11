@@ -3,7 +3,7 @@ const port = 8080;
 const app = express();
 const {Server} = require('socket.io')
 const handlebars = require('express-handlebars')
-
+const mongoConnect = require('../db/index')
 
 const productsRouter = require("./routes/products.router");
 const cartRouter = require("./routes/cart.router");
@@ -22,6 +22,7 @@ app.engine('handlebars', handlebars.engine())
 app.set('views',__dirname + '/views')
 app.set('view engine','handlebars')
 
+mongoConnect()
 
 const httpServer = app.listen(port, () => {
    console.log(`Server listening on ${port}`);
