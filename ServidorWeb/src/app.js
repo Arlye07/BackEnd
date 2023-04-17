@@ -27,10 +27,10 @@ app.engine('handlebars', handlebars.engine())
 app.set('views',__dirname + '/views')
 app.set('view engine','handlebars')
 
-mongoConnect()
+ mongoConnect ()
 //router(app)
 
-const httpServer = app.listen(port, () => {
+const httpServer = app.listen(port, async() => { 
    console.log(`Server listening on ${port}`);
 });
 const io = new Server(httpServer)
