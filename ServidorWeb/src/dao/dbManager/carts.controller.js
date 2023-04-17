@@ -23,10 +23,8 @@ router.post('/:cartId/:productId', async (req, res) => {
 
     const item = cart.productos.find(item => item.product === product.id);
     if (item) {
-      // Si el producto ya existe en el carrito, aumenta la cantidad en req.body.quantity
       item.quantity ++
     } else {
-      // Si el producto no existe en el carrito, agrega un nuevo objeto al array de productos
       cart.productos.push({
         product: product.id,
         quantity: 1

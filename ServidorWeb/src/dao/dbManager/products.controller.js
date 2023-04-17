@@ -8,9 +8,9 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-
   try {
-    const newProduct = await Products.create(req.body)
+    const productInfo = req.body
+    const newProduct = await Products.create(productInfo)
     res.json({message: newProduct})
   } catch (error) {
     console.log(error)
